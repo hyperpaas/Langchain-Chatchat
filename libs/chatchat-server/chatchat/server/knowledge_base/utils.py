@@ -468,7 +468,7 @@ def format_reference(kb_name: str, docs: List[Dict], api_base_url: str="") -> Li
 
     source_documents = []
     for inum, doc in enumerate(docs):
-        filename = doc.get("metadata", {}).get("source")
+        filename = doc.get("id") + "-" + doc.get("metadata", {}).get("source")
         parameters = urlencode(
             {
                 "knowledge_base_name": kb_name,
