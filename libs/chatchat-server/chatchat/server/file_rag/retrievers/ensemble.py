@@ -33,14 +33,15 @@ class EnsembleRetrieverService(BaseRetrieverService):
         import jieba
 
         # cutter = Cutter()
-        docs = list(vectorstore.docstore._dict.values())
-        bm25_retriever = BM25Retriever.from_documents(
-            docs,
-            preprocess_func=jieba.lcut_for_search,
-        )
-        bm25_retriever.k = top_k
+        #docs = list(vectorstore.docstore._dict.values())
+        #bm25_retriever = BM25Retriever.from_documents(
+        #    docs,
+        #    preprocess_func=jieba.lcut_for_search,
+        #)
+        #bm25_retriever.k = top_k
         ensemble_retriever = EnsembleRetriever(
-            retrievers=[bm25_retriever, faiss_retriever], weights=[0.5, 0.5]
+        #    retrievers=[bm25_retriever, faiss_retriever], weights=[0.5, 0.5]
+            retrievers=[faiss_retriever]
         )
         return EnsembleRetrieverService(retriever=ensemble_retriever, top_k=top_k)
 
